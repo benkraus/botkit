@@ -1,0 +1,42 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D69339147D8324715B4F5FDA1E29F4524399AD0A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D69339147D8324715B4F5FDA1E29F4524399AD0A" : 9223372036854775807,
+    "C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D" : 9223372036854775807,
+    "A9DBE2ED3B1DD6C096E2F0140D7E3E86C7F230CB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8F5FA96E-FB56-493D-B4F2-F06D0FFD8109",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D69339147D8324715B4F5FDA1E29F4524399AD0A" : "botkit\/",
+    "C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D" : "botkit\/Submodules\/Starscream\/",
+    "A9DBE2ED3B1DD6C096E2F0140D7E3E86C7F230CB" : "botkit\/Submodules\/Jobs\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BotKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BotKit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:benkraus\/jobs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A9DBE2ED3B1DD6C096E2F0140D7E3E86C7F230CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:utahiosmac\/jobs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A9DBE2ED3B1DD6C096E2F0140D7E3E86C7F230CB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:daltoniam\/Starscream.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C86D95FCAEB1FEA0694B5D4AC7241D7E5F42F31D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:benkraus\/botkit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D69339147D8324715B4F5FDA1E29F4524399AD0A"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-[submodule "SocketRocket"]
-	path = Submodules/SocketRocket
-	url = git@github.com:square/SocketRocket.git
 [submodule "Jobs"]
 	path = Submodules/Jobs
 	url = git@github.com:utahiosmac/jobs.git
+[submodule "Starscream"]
+	path = Submodules/Starscream
+	url = git@github.com:daltoniam/Starscream.git

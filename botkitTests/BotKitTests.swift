@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import botkit
+@testable import BotKit
 
 class botkitTests: XCTestCase {
     

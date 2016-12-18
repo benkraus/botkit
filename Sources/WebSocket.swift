@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import SocketRocket
+import Starscream
 
 internal class WebSocket: NSObject {
-    fileprivate var socket: SRWebSocket
+    fileprivate var socket: Starscream.WebSocket
     fileprivate var socketError: NSError?
     fileprivate var receivedLastPong = true
     
@@ -21,7 +21,7 @@ internal class WebSocket: NSObject {
     fileprivate let pingInterval: TimeInterval
     
     init(socketURL: URL, pingInterval: TimeInterval) {
-        self.socket = SRWebSocket(url: socketURL)
+        self.socket = Starscream.WebSocket(url: socketURL)
         self.pingInterval = pingInterval
         self.timerSource = DispatchSource.makeTimerSource(flags: [], queue: .main)
         
@@ -30,7 +30,7 @@ internal class WebSocket: NSObject {
     }
     
     func open() {
-        socket.open()
+        socket.connect()
     }
     
     fileprivate func close() {
@@ -40,49 +40,49 @@ internal class WebSocket: NSObject {
     }
 }
 
-extension WebSocket: SRWebSocketDelegate {
-    
-    func webSocketDidOpen(_ webSocket: SRWebSocket) {
+extension WebSocket: Starscream.WebSocketDelegate {
+    func websocketDidConnect(socket: Starscream.WebSocket) {
         let intervalInNSec = pingInterval * Double(NSEC_PER_SEC)
         let startTime = DispatchTime.now() + Double(intervalInNSec) / Double(NSEC_PER_SEC)
-        
+
         timerSource.scheduleRepeating(deadline: startTime, interval: pingInterval, leeway: .nanoseconds(Int(NSEC_PER_SEC / 10)))
         timerSource.setEventHandler { [unowned self] in
             if self.receivedLastPong == false {
                 // we did not receive the last pong
                 // abort the socket so that we can spin up a new connection
-                self.socket.close()
-            } else if self.socket.readyState == .CLOSED || self.socket.readyState == .CLOSING {
-                self.close()
+                self.socket.disconnect()
             } else {
                 // we got a pong recently
                 // send another ping
                 self.receivedLastPong = false
-                try? self.socket.sendPing(nil)
+                self.socket.write(ping: Data())
             }
         }
         timerSource.resume()
     }
-    
-    func webSocket(_ webSocket: SRWebSocket, didReceivePong pongData: Data?) {
-        self.receivedLastPong = true
-    }
-    
-    func webSocket(_ webSocket: SRWebSocket, didReceiveMessage message: Any) {
-        // messages from the socket can either be NSData or NSString
-        // we don't particularly care about data messages
-        guard let string = message as? String else { return }
-        onEvent?(string)
-    }
-    
-    func webSocket(_ webSocket: SRWebSocket, didFailWithError error: Error) {
-        // save the error we can pass it back through the onClose closure
-        socketError = error as NSError
-        close()
-    }
-    
-    func webSocket(_ webSocket: SRWebSocket, didCloseWithCode code: Int, reason: String?, wasClean: Bool) {
+
+    func websocketDidDisconnect(socket: Starscream.WebSocket, error: NSError?) {
+        if let error = error {
+            // save the error we can pass it back through the onClose closure
+            socketError = error as NSError
+        }
+
         // tear it all down
         close()
     }
+
+    func websocketDidReceiveMessage(socket: Starscream.WebSocket, text: String) {
+        onEvent?(text)
+    }
+
+    func websocketDidReceiveData(socket: Starscream.WebSocket, data: Data) {
+        // we don't particularly care about data messages, so we do nothing
+    }
 }
+
+extension WebSocket: Starscream.WebSocketPongDelegate {
+    func websocketDidReceivePong(socket: Starscream.WebSocket, data: Data?) {
+        self.receivedLastPong = true
+    }
+}
+

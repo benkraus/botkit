@@ -111,7 +111,7 @@ extension ChannelCache {
         let json = JSON.object(cache)
         
         do {
-            try FileManager.default.createFile(atPath: cacheFile.path, contents: nil, attributes: nil)
+            FileManager.default.createFile(atPath: cacheFile.path, contents: nil, attributes: nil)
             
             let data = try json.data([.prettyPrinted])
             _ = try data.write(to: cacheFile)
