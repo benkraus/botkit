@@ -27,6 +27,7 @@ internal class WebSocket: NSObject {
         
         super.init()
         socket.delegate = self
+        socket.pongDelegate = self
     }
     
     func open() {
